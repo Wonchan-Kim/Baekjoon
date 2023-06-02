@@ -1,6 +1,6 @@
 #include <iostream>
-#include <vector>
 #include <string>
+#include <queue>
 
 int main() {
     std::ios_base::sync_with_stdio(false);
@@ -8,58 +8,51 @@ int main() {
     
     int num;
     std::cin >> num;
+    std::cin.ignore();  // Ignore the newline character after reading 'num'
 
-    std::vector<int> ans;
-    int frontIdx = 0;
-    int backIdx = -1;
-
-    std::vector<int> output;
+    std::queue<int> ans;
 
     while (num--) {
         std::string input;
         std::cin >> input;
 
         if (input == "push") {
-            int value;
-            std::cin >> value;
-            ans.push_back(value);
-            backIdx++;
+            int i;
+            std::cin >> i;
+            ans.push(i);
         }
         else if (input == "pop") {
-            if (frontIdx <= backIdx) {
-                output.push_back(ans[frontIdx]);
-                frontIdx++;
+            if (!ans.empty()) {
+                int x = ans.front();
+                ans.pop();
+                std::cout << x << '\n';
             }
             else {
-                output.push_back(-1);
+                std::cout << -1 << '\n';
             }
         }
         else if (input == "size") {
-            output.push_back(backIdx - frontIdx + 1);
+            std::cout << ans.size() << '\n';
         }
         else if (input == "empty") {
-            output.push_back(frontIdx > backIdx ? 1 : 0);
+            std::cout << (ans.empty() ? 1 : 0) << '\n';
         }
         else if (input == "front") {
-            if (frontIdx <= backIdx) {
-                output.push_back(ans[frontIdx]);
+            if (!ans.empty()) {
+                std::cout << ans.front() << '\n';
             }
             else {
-                output.push_back(-1);
+                std::cout << -1 << '\n';
             }
         }
         else if (input == "back") {
-            if (frontIdx <= backIdx) {
-                output.push_back(ans[backIdx]);
+            if (!ans.empty()) {
+                std::cout << ans.back() << '\n';
             }
             else {
-                output.push_back(-1);
+                std::cout << -1 << '\n';
             }
         }
-    }
-
-    for (int value : output) {
-        std::cout << value << '\n';
     }
 
     return 0;
