@@ -1,18 +1,16 @@
 #include <string>
 #include <vector>
 #include <queue>
-
-
 using namespace std;
+
 int solution(int bridge_length, int weight, vector<int> truck_weights) {
     int answer = 0;
     queue<int> bridge;
-
-    for(int i = 0; i < bridge_length; i++){
-        bridge.push(0);
-    }
     int bridge_sum = 0;
     int next_num = 0;
+
+    for(int i = 0; i < bridge_length; i++)
+        bridge.push(0);
 
     while (next_num < truck_weights.size()) {
         bridge_sum -= bridge.front();
@@ -28,8 +26,6 @@ int solution(int bridge_length, int weight, vector<int> truck_weights) {
             answer++;
         }
     }
-
     answer += bridge_length;
-
     return answer;
 }
