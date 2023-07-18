@@ -8,7 +8,6 @@ int solution(vector<int> scoville, int K) {
     int answer = 0;
     priority_queue<int> pq;
     int q_top;
-    int mix;
     vector<int>::iterator it;
     
     for(it = scoville.begin(); it != scoville.end(); it++){
@@ -19,9 +18,8 @@ int solution(vector<int> scoville, int K) {
     while(pq.size() > 1 && pq.top() > -K){
         q_top = pq.top();
         pq.pop();
-        mix = pq.top();
+        q_top += pq.top() * 2;
         pq.pop();
-        q_top += mix * 2;
         pq.push(q_top);
         answer++;
     }
