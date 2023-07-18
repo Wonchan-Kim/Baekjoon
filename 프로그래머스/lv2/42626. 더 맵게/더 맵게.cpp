@@ -15,6 +15,7 @@ int solution(vector<int> scoville, int K) {
         *it *= -1;
         pq.push(*it);
     }
+    
     while(pq.size() > 1 && pq.top() > -K){
         q_top = pq.top();
         pq.pop();
