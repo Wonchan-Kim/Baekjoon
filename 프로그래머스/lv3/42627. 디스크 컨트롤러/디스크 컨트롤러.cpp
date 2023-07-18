@@ -43,8 +43,8 @@ int solution(vector<vector<int>> jobs) {
             continue;
         }
         sort(run.begin(), run.end(), cmp2);
-        time += run[0][1]; // 끝난 기점으로 지금 시간 갱신
-        answer += (time - run[0][0]); // 지금 시간에서 시작 시간 빼서 더하기
+        time += run[0][1]; // 끝난 기점으로 시간 갱신
+        answer += (time - run[0][0]); // 현재 시간에서 시작 시간 빼서 더하기
         run.erase(run.begin() + 0);
         finishCount++;
     
