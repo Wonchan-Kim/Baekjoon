@@ -141,7 +141,6 @@ vector<int> solution(vector<string> operations) {
                 bst.remove(bst.findMax());
                 cnt--;
             }
-            // 최솟값 삭제
             else {
                 bst.remove(bst.findMin());
                 cnt--;
