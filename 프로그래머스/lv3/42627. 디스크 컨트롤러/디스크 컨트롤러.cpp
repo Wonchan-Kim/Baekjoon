@@ -47,7 +47,6 @@ int solution(vector<vector<int>> jobs) {
         answer += (time - run[0][0]); // 현재 시간에서 시작 시간 빼서 더하기
         run.erase(run.begin() + 0);
         finishCount++;
-    
     }
     
     return ((int)(answer / jobs.size()));
