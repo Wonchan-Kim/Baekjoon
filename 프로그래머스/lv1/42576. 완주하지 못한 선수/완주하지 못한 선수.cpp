@@ -1,36 +1,54 @@
 #include <string>
 #include <vector>
 #include <unordered_map>
+#include <algorithm>
 
 using namespace std;
 
 string solution(vector<string> participant, vector<string> completion) {
-    string answer = "";
-    unordered_map<string, int> strMap;
-    for(auto elem : completion)
-    {
-        if(strMap.end() == strMap.find(elem))
-            strMap.insert(make_pair(elem, 1));
-        else
-            strMap[elem]++;
+    unordered_map<string, int> pc;
+    for (const auto& p : participant) {
+        pc[p]++;
+    }
+    for (const auto& c : completion) {
+        pc[c]--;
     }
 
-    for(auto elem : participant)
-    {
-        if(strMap.end() == strMap.find(elem))
-        {
-            answer = elem;
-            break;
-        }
-        else
-        {
-            strMap[elem]--;
-            if(strMap[elem] < 0)
-            {
-                answer = elem;
-                break;
-            }
+    for (const auto& pair : pc) {
+        if (pair.second > 0) {
+            return pair.first;
         }
     }
+
+    return "";
+}
+
+/*
+#include <string>
+#include <vector>
+#include <map>
+#include <algorithm>
+
+using namespace std;
+
+string solution(vector<string> participant, vector<string> completion) {
+    map<string, int> pc;
+    for (auto it = participant.begin(); it != participant.end(); it++) {
+        if (pc.find(*it) == pc.end())
+            pc.insert(make_pair(*it, 1));
+        else
+            pc.find(*it)->second++;
+    }
+    for (auto it = completion.begin(); it != completion.end(); it++) {
+        if (pc.find(*it) != pc.end()) {
+            if (pc.find(*it)->second == 1)
+                pc.erase(*it); 
+            else
+                pc.find(*it)->second--;
+        }
+    }
+
+    string answer = pc.begin()->first;
     return answer;
 }
+*/
