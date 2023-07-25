@@ -1,27 +1,36 @@
 #include <string>
 #include <vector>
-#include <map>
-#include <algorithm>
+#include <unordered_map>
 
 using namespace std;
 
 string solution(vector<string> participant, vector<string> completion) {
-    map<string, int> pc;
-    for (auto it = participant.begin(); it != participant.end(); it++) {
-        if (pc.find(*it) == pc.end())
-            pc.insert(make_pair(*it, 1));
+    string answer = "";
+    unordered_map<string, int> strMap;
+    for(auto elem : completion)
+    {
+        if(strMap.end() == strMap.find(elem))
+            strMap.insert(make_pair(elem, 1));
         else
-            pc.find(*it)->second++;
-    }
-    for (auto it = completion.begin(); it != completion.end(); it++) {
-        if (pc.find(*it) != pc.end()) {
-            if (pc.find(*it)->second == 1)
-                pc.erase(*it); 
-            else
-                pc.find(*it)->second--;
-        }
+            strMap[elem]++;
     }
 
-    string answer = pc.begin()->first;
+    for(auto elem : participant)
+    {
+        if(strMap.end() == strMap.find(elem))
+        {
+            answer = elem;
+            break;
+        }
+        else
+        {
+            strMap[elem]--;
+            if(strMap[elem] < 0)
+            {
+                answer = elem;
+                break;
+            }
+        }
+    }
     return answer;
 }
