@@ -37,7 +37,7 @@ int main(){
     int answer = 0;
     for(int i = 0; i < 26; i++){
         if (priority[i] == 0)
-            continue;
+            break;
         answer += priority[i] * num--;
     }
     cout << answer << endl;
