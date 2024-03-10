@@ -17,7 +17,7 @@
 #include <utility>
 using namespace std;
 
-bool compare(const pair<long long, long long>& a, const pair<long long, long long>& b){
+bool compare(const pair<int, int>& a, const pair<int, int>& b){
     if(a.second == b.second){
         return a.first < b.first;
     }
@@ -25,13 +25,15 @@ bool compare(const pair<long long, long long>& a, const pair<long long, long lon
 }
 
 int main () {
-    long long n;
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int n;
     cin >> n;
 
 
-    vector<pair<long long,long long>> conference;
-    for(long long i = 0; i < n; i++){
-        long long a, b;
+    vector<pair<int,int>> conference;
+    for(int i = 0; i < n; i++){
+        int a, b;
         cin >> a >> b;
         conference.push_back({a,b});
     }
@@ -40,15 +42,15 @@ int main () {
         return 0;
     }
     sort(conference.begin(), conference.end(), compare);
-   
-    long long cnt = 0;
-    long long i = 0;
+
+    int cnt = 0;
+    int i = 0;
     while(i < n){
-        long long end_time = conference[i++].second;
+        int end_time = conference[i++].second;
         while(conference[i].first < end_time && i < n){
             i++;
         }
         cnt++;
     }
-    cout << cnt << endl;
+    cout << cnt << '\n';
 }
