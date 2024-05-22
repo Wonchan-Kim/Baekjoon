@@ -45,11 +45,13 @@ string bfs(int cur, int target){
 }
 
 int main() {
+    ios_base::sync_with_stdio(false);
+	cin.tie(0); cout.tie(0);
     int tc;
     cin >> tc;
     while(tc--){
         int cur, target;
         cin >> cur >> target;
-        cout << bfs(cur, target) << endl;
+        cout << bfs(cur, target) << '\n';
     }
 }
